@@ -5,3 +5,4 @@ redis.*
 test.log
 settings.json
 .phpunit.result.cache
+dump.rdb

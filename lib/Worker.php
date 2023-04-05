@@ -17,7 +17,6 @@ use function key;
 use function pcntl_signal;
 use function php_uname;
 use function sleep;
-use function strftime;
 
 use const PHP_EOL;
 use const SIGCONT;
@@ -131,7 +130,7 @@ class Worker implements LoggerAwareInterface
             $data = json_encode(
                 [
                     'target_queue' => $targetQueue,
-                    'run_at'       => strftime('%a %b %d %H:%M:%S %Z %Y'),
+                    'run_at'       => date("D M d H:i:s T Y", time()),
                     'args'         => $arguments,
                 ]
             );
@@ -151,7 +150,7 @@ class Worker implements LoggerAwareInterface
         if ($this->logLevel == self::LOG_NORMAL) {
             fwrite(STDOUT, '*** ' . $message . PHP_EOL);
         } elseif ($this->logLevel == self::LOG_VERBOSE) {
-            fwrite(STDOUT, '** [' . strftime('%T %Y-%m-%d') . ']' . $message . PHP_EOL);
+            fwrite(STDOUT, '** [' . date("H:i:s Y-m-d", time()) . ']' . $message . PHP_EOL);
         }
     }
 
@@ -265,7 +264,7 @@ class Worker implements LoggerAwareInterface
      */
     private function startup(): void
     {
-        $this->resque->getClient()->set($this->id . ':started', strftime('%a %b %d %H:%M:%S %Z %Y'));
+        $this->resque->getClient()->set($this->id . ':started', date("D M d H:i:s T Y", time()));
 
         if (!function_exists('pcntl_signal')) {
             $this->logger->warning('Cannot register signal handlers');
