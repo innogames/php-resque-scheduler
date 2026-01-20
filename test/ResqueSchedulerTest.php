@@ -12,7 +12,7 @@ use function time;
 
 class ResqueSchedulerTest extends Test
 {
-    private const QUEUE_JOBS = 'jobs';
+    private const string QUEUE_JOBS = 'jobs';
 
     protected ResqueScheduler $scheduler;
 

@@ -18,9 +18,9 @@ use function json_encode;
  */
 class ResqueScheduler
 {
-    public const VERSION = "4.0";
+    public const string VERSION = "4.0";
 
-    private const PREFIX_DELAYED = 'delayed:';
+    private const string PREFIX_DELAYED = 'delayed:';
 
     /**
      * @var ClientInterface
@@ -148,7 +148,7 @@ class ResqueScheduler
      *
      * @return int|false UNIX timestamp, or false if nothing to run.
      */
-    public function nextDelayedTimestamp(DateTime|int $at = null): int|false
+    public function nextDelayedTimestamp(DateTime|int|null $at = null): int|false
     {
         if ($at === null) {
             $at = time();
