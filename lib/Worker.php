@@ -32,9 +32,9 @@ use const SIGUSR1;
  */
 class Worker implements LoggerAwareInterface
 {
-    public const LOG_NONE    = 0;
-    public const LOG_NORMAL  = 1;
-    public const LOG_VERBOSE = 2;
+    public const int LOG_NONE    = 0;
+    public const int LOG_NORMAL  = 1;
+    public const int LOG_VERBOSE = 2;
 
     protected int $logLevel;
     protected int $interval;
@@ -100,7 +100,7 @@ class Worker implements LoggerAwareInterface
      *
      * @param DateTime|int $timestamp Search for any items up to this timestamp to schedule.
      */
-    public function handleDelayedItems(DateTime|int $timestamp = null): void
+    public function handleDelayedItems(DateTime|int|null $timestamp = null): void
     {
         while (($oldestJobTimestamp = $this->scheduler->nextDelayedTimestamp($timestamp)) !== false) {
             $this->updateProcLine('Processing Delayed Items');

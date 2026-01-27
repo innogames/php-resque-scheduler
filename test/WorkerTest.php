@@ -9,7 +9,7 @@ use Resque\Test\Job;
 
 class WorkerTest extends Test
 {
-    private const QUEUE_JOBS = 'jobs';
+    private const string QUEUE_JOBS = 'jobs';
 
     protected ResqueScheduler $scheduler;
     protected Worker $worker;

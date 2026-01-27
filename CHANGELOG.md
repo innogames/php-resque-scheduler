@@ -1,3 +1,7 @@
+## 6.0.0 ##
+* Make changes for php 8.4, such as adding constant types
+* Add rector to the project for easier future upgrades
+
 ## 5.0.2 ##
 * Add support for php 8.2 (and above)
 
